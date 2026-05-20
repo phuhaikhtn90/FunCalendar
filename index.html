@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Study Planner for Kick</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Quicksand:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Sụmmer Calendar</p>
+          <h1>Daily Study Planner for Kick</h1>
+          <p class="hero-copy">
+            Keep each day simple with 3-4 manageable tasks, easy progress
+            tracking, and quick editing for the weeks ahead.
+          </p>
+        </div>
+        <div class="hero-badge">
+          <span id="heroWeekLabel">This week</span>
+          <strong id="heroScore">0%</strong>
+          <small id="heroRank">Planning in progress</small>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel controls-panel">
+          <div class="toolbar">
+            <div class="view-switch" role="tablist" aria-label="Calendar view mode">
+              <button class="active" data-view="day" type="button">Day</button>
+              <button data-view="week" type="button">Week</button>
+              <button data-view="month" type="button">Month</button>
+            </div>
+            <div class="nav-buttons">
+              <button id="prevBtn" type="button" aria-label="Previous">←</button>
+              <button id="todayBtn" type="button">Today</button>
+              <button id="nextBtn" type="button" aria-label="Next">→</button>
+            </div>
+          </div>
+
+          <div class="title-row">
+            <div>
+              <h2 id="rangeLabel">Study plan</h2>
+              <p id="rangeSubLabel" class="muted"></p>
+            </div>
+            <button id="weeklyPlanBtn" class="secondary-btn" type="button">
+              Edit week
+            </button>
+          </div>
+
+          <div id="calendar" class="calendar-grid" aria-live="polite"></div>
+        </section>
+
+        <aside class="sidebar">
+          <section class="panel summary-panel">
+            <div class="section-heading">
+              <h3>Weekly summary</h3>
+              <span class="pill" id="weeklyGradePill">No data yet</span>
+            </div>
+            <div class="summary-stats">
+              <article>
+                <strong id="summaryDone">0</strong>
+                <span>Done</span>
+              </article>
+              <article>
+                <strong id="summaryTotal">0</strong>
+                <span>Total tasks</span>
+              </article>
+              <article>
+                <strong id="summaryRate">0%</strong>
+                <span>Completion</span>
+              </article>
+            </div>
+            <p id="weeklyInsight" class="insight"></p>
+          </section>
+
+          <section class="panel ideas-panel">
+            <div class="section-heading">
+              <h3>Theme ideas</h3>
+              <span class="pill soft">By month</span>
+            </div>
+            <div id="themeCard" class="theme-card"></div>
+          </section>
+
+          <section class="panel ideas-panel">
+            <div class="section-heading">
+              <h3>Resource library</h3>
+              <span class="pill soft">Quick access</span>
+            </div>
+            <div id="resourceList" class="resource-list"></div>
+          </section>
+
+          <section class="panel ideas-panel">
+            <div class="section-heading">
+              <h3>Personal data</h3>
+              <span class="pill soft">Backup</span>
+            </div>
+            <div class="resource-list">
+              <article class="resource-item">
+                <h4>Portable edits</h4>
+                <p>
+                  The base schedule lives in a separate data file. Daily check
+                  marks and personal edits are stored in your browser and can be
+                  exported as JSON for backup or AI-assisted updates.
+                </p>
+                <div class="task-links">
+                  <button id="exportStateBtn" class="secondary-btn" type="button">Export JSON</button>
+                  <label class="import-btn">
+                    Import JSON
+                    <input id="importStateInput" type="file" accept="application/json" hidden />
+                  </label>
+                </div>
+              </article>
+            </div>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <dialog id="taskDialog" class="task-dialog">
+      <form method="dialog" class="dialog-card" id="taskForm">
+        <div class="dialog-header">
+          <div>
+            <p class="eyebrow">Edit study plan</p>
+            <h3 id="dialogTitle">Study day</h3>
+          </div>
+          <button class="icon-btn" type="submit" value="cancel" aria-label="Close">
+            ✕
+          </button>
+        </div>
+
+        <div id="dialogTasks" class="dialog-tasks"></div>
+
+        <div class="form-grid">
+          <label>
+            Task title
+            <input id="taskTitleInput" name="title" type="text" required />
+          </label>
+          <label>
+            Subject
+            <select id="taskSubjectInput" name="subject"></select>
+          </label>
+          <label>
+            Notes / instructions
+            <textarea id="taskNoteInput" name="note" rows="3"></textarea>
+          </label>
+          <label>
+            Learning link
+            <input id="taskLinkInput" name="link" type="url" placeholder="https://..." />
+          </label>
+          <label>
+            Update scope
+            <select id="taskScopeInput" name="scope">
+              <option value="day">This day only</option>
+              <option value="series">Apply to future weeks</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="dialog-actions">
+          <button id="saveTaskBtn" class="primary-btn" type="button">Save changes</button>
+          <button id="addTaskBtn" class="secondary-btn" type="button">Add new task</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="weekDialog" class="task-dialog">
+      <form method="dialog" class="dialog-card week-card" id="weekForm">
+        <div class="dialog-header">
+          <div>
+            <p class="eyebrow">Weekly adjustment</p>
+            <h3 id="weekDialogTitle">Weekly plan</h3>
+          </div>
+          <button class="icon-btn" type="submit" value="cancel" aria-label="Close">
+            ✕
+          </button>
+        </div>
+        <div class="form-grid">
+          <label>
+            What should we prioritize this week?
+            <textarea id="weekFocusInput" rows="3"></textarea>
+          </label>
+          <label>
+            What should be lighter or simplified?
+            <textarea id="weekAdjustmentInput" rows="3"></textarea>
+          </label>
+        </div>
+        <div class="dialog-actions">
+          <button id="saveWeekBtn" class="primary-btn" type="button">Save weekly notes</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="./data/study-data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
