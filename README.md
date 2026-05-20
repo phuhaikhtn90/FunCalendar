@@ -18,8 +18,9 @@ A static web app for planning a child-friendly daily study schedule.
 - `styles.css`: visual design, responsive layout, and animations
 - `app.js`: calendar rendering, editing logic, summaries, and local storage
 - `data/study-data.js`: editable schedule data, subjects, resources, and monthly themes
-- `data/cloud-config.js`: cloud sync settings
-- `firebase-sync.js`: optional Firebase/Firestore sync layer
+- `data/sync-config.js`: simple cloud sync settings
+- `apps-script-sync.js`: Google Apps Script sync client
+- `apps-script/Code.gs`: server code for the Apps Script web app
 
 ## How to use
 
@@ -34,8 +35,23 @@ A static web app for planning a child-friendly daily study schedule.
 - Edit `data/study-data.js` to change subjects, recurring tasks, links, monthly themes, and learning notes.
 - The app stores completion state and quick edits in browser `localStorage` under the key `fun-calendar-state-v2`.
 - If you want a clean reset, remove that key from browser DevTools.
-- To sync progress across multiple devices, fill in `data/cloud-config.js` with your Firebase project settings and set `enabled: true`.
-- The app will still work locally if cloud sync is not configured.
+- To sync across devices in a simpler way, deploy `apps-script/Code.gs` as a Google Apps Script Web App.
+- Then fill in `data/sync-config.js` with your web app URL and a private `accessKey`, and set `enabled: true`.
+- Use `Sync now` to push local progress to the cloud and `Load cloud` to pull the latest saved data.
+- The app still works normally if cloud sync is not configured.
+
+## Simple cloud sync setup
+
+1. Go to [script.google.com](https://script.google.com/) and create a new Apps Script project.
+2. Paste the contents of `apps-script/Code.gs` into the project.
+3. In `Project Settings` or from code, set a script property named `FUN_CALENDAR_ACCESS_KEY`.
+4. Deploy the script as a `Web app`.
+5. In the deployment settings:
+   - Execute as: `Me`
+   - Who has access: `Anyone`
+6. Copy the web app URL into `data/sync-config.js`.
+7. Put the same private access key into `data/sync-config.js`.
+8. Set `enabled: true`.
 
 ## Study design notes
 

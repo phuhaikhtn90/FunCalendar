@@ -28,6 +28,8 @@
   const exportStateBtn = document.getElementById("exportStateBtn");
   const importStateInput = document.getElementById("importStateInput");
   const syncStatusText = document.getElementById("syncStatusText");
+  const syncNowBtn = document.getElementById("syncNowBtn");
+  const loadCloudBtn = document.getElementById("loadCloudBtn");
 
   const state = {
     view: "day",
@@ -84,6 +86,8 @@
     document.getElementById("saveWeekBtn").addEventListener("click", saveWeekNote);
     exportStateBtn.addEventListener("click", exportState);
     importStateInput.addEventListener("change", importState);
+    syncNowBtn.addEventListener("click", syncStateToCloud);
+    loadCloudBtn.addEventListener("click", loadStateFromCloud);
   }
 
   function loadState() {
@@ -106,9 +110,6 @@
 
   function saveState() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state.storage));
-    if (window.FunCalendarCloud) {
-      window.FunCalendarCloud.saveState(state.storage);
-    }
   }
 
   function render() {
@@ -160,17 +161,33 @@
     });
 
     await window.FunCalendarCloud.initialize();
-    const remoteState = await window.FunCalendarCloud.loadState();
-    if (remoteState) {
-      state.storage = {
-        completions: remoteState.completions || {},
-        dayOverrides: remoteState.dayOverrides || {},
-        seriesOverrides: remoteState.seriesOverrides || [],
-        weekNotes: remoteState.weekNotes || {}
-      };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.storage));
-      render();
+  }
+
+  async function loadStateFromCloud() {
+    if (!window.FunCalendarCloud) {
+      return;
     }
+
+    const remoteState = await window.FunCalendarCloud.loadState();
+    if (!remoteState) {
+      return;
+    }
+
+    state.storage = {
+      completions: remoteState.completions || {},
+      dayOverrides: remoteState.dayOverrides || {},
+      seriesOverrides: remoteState.seriesOverrides || [],
+      weekNotes: remoteState.weekNotes || {}
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state.storage));
+    render();
+  }
+
+  async function syncStateToCloud() {
+    if (!window.FunCalendarCloud) {
+      return;
+    }
+    await window.FunCalendarCloud.saveState(state.storage);
   }
 
   function buildDayCard(date, activeRange) {

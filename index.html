@@ -114,6 +114,8 @@
                   Cloud sync: local-only mode.
                 </p>
                 <div class="task-links">
+                  <button id="loadCloudBtn" class="secondary-btn" type="button">Load cloud</button>
+                  <button id="syncNowBtn" class="secondary-btn" type="button">Sync now</button>
                   <button id="exportStateBtn" class="secondary-btn" type="button">Export JSON</button>
                   <label class="import-btn">
                     Import JSON
@@ -200,12 +202,9 @@
         </div>
       </form>
     </dialog>
-
-    <script src="https://www.gstatic.com/firebasejs/12.7.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore-compat.js"></script>
     <script src="./data/study-data.js"></script>
-    <script src="./data/cloud-config.js"></script>
-    <script src="./firebase-sync.js"></script>
+    <script src="./data/sync-config.js"></script>
+    <script src="./apps-script-sync.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>
