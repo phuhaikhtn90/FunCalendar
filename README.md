@@ -1,28 +1,46 @@
-# Fun Study Planner
+# FunCalendar
 
-A static web page for managing a child’s daily study plan.
+A static web app for planning a child-friendly daily study schedule.
 
-## Quick start
+## Features
 
-Open [index.html](/Users/haile/Documents/github/FunCalendar/index.html) in a browser.
+- `Day`, `Week`, and `Month` calendar views
+- `Day` view opens by default and focuses on today
+- Maximum `3 tasks per day`, balanced across the week
+- Task completion tracking with weekly performance summary
+- Easy editing for a single day or for future recurring weeks
+- Direct learning links for YouTube, Gemini, Micro:bit, and more
+- Browser-based backup with JSON export and import
 
-## Structure
+## Project structure
 
-- [index.html](/Users/haile/Documents/github/FunCalendar/index.html): UI markup
-- [styles.css](/Users/haile/Documents/github/FunCalendar/styles.css): styling and animation
-- [app.js](/Users/haile/Documents/github/FunCalendar/app.js): calendar logic, summaries, and editing
-- [data/study-data.js](/Users/haile/Documents/github/FunCalendar/data/study-data.js): separate study data source
+- `index.html`: app layout and dialogs
+- `styles.css`: visual design, responsive layout, and animations
+- `app.js`: calendar rendering, editing logic, summaries, and local storage
+- `data/study-data.js`: editable schedule data, subjects, resources, and monthly themes
 
-## Editing data
+## How to use
 
-- Update frequency, task names, notes, and links in [study-data.js](/Users/haile/Documents/github/FunCalendar/data/study-data.js)
-- The page stores done states and quick edits in your browser `localStorage`
-- To reset check marks and personal edits, remove the `fun-calendar-state-v1` key in DevTools
+1. Open `index.html` in a browser.
+2. Use the `Day`, `Week`, or `Month` tabs to switch views.
+3. Check tasks as completed after each study session.
+4. Click `Edit` to adjust one day, or apply updates to future recurring weeks.
+5. Use `Export JSON` to back up your personal progress and edits.
 
-## Schedule notes
+## Customizing the schedule
 
-- Keep each day to 3-4 tasks
-- Prioritize one language task, one thinking task, and one creative or relaxed learning task
-- English includes Peppa Pig, Cambridge, Gemini conversation, and dubbing practice
-- Chinese appears 5 times per week with listening, speaking, recognition, and review
-- Reading and discovery appear 2-3 times per week with monthly themes
+- Edit `data/study-data.js` to change subjects, recurring tasks, links, monthly themes, and learning notes.
+- The app stores completion state and quick edits in browser `localStorage` under the key `fun-calendar-state-v2`.
+- If you want a clean reset, remove that key from browser DevTools.
+
+## Study design notes
+
+- Each day is capped at `3 tasks`.
+- The weekly plan is evenly distributed at `3 tasks x 7 days`.
+- The schedule mixes language practice, thinking skills, and creative exploration.
+- English includes Peppa Pig listening, Cambridge practice, Gemini speaking, and dubbing.
+- Chinese appears `5 times per week`.
+- Math appears `2 times per week`.
+- Chess appears `3 times per week`.
+- Micro:bit appears `2 times per week`.
+- Reading and discovery are spread across lighter and theme-based sessions.
