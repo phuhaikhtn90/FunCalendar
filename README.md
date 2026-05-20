@@ -18,6 +18,8 @@ A static web app for planning a child-friendly daily study schedule.
 - `styles.css`: visual design, responsive layout, and animations
 - `app.js`: calendar rendering, editing logic, summaries, and local storage
 - `data/study-data.js`: editable schedule data, subjects, resources, and monthly themes
+- `data/cloud-config.js`: cloud sync settings
+- `firebase-sync.js`: optional Firebase/Firestore sync layer
 
 ## How to use
 
@@ -32,6 +34,8 @@ A static web app for planning a child-friendly daily study schedule.
 - Edit `data/study-data.js` to change subjects, recurring tasks, links, monthly themes, and learning notes.
 - The app stores completion state and quick edits in browser `localStorage` under the key `fun-calendar-state-v2`.
 - If you want a clean reset, remove that key from browser DevTools.
+- To sync progress across multiple devices, fill in `data/cloud-config.js` with your Firebase project settings and set `enabled: true`.
+- The app will still work locally if cloud sync is not configured.
 
 ## Study design notes
 

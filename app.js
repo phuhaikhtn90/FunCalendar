@@ -27,6 +27,7 @@
   const weekAdjustmentInput = document.getElementById("weekAdjustmentInput");
   const exportStateBtn = document.getElementById("exportStateBtn");
   const importStateInput = document.getElementById("importStateInput");
+  const syncStatusText = document.getElementById("syncStatusText");
 
   const state = {
     view: "day",
@@ -38,6 +39,7 @@
 
   populateSubjectOptions();
   attachEvents();
+  initializeCloudSync();
   render();
 
   function attachEvents() {
@@ -104,6 +106,9 @@
 
   function saveState() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state.storage));
+    if (window.FunCalendarCloud) {
+      window.FunCalendarCloud.saveState(state.storage);
+    }
   }
 
   function render() {
@@ -141,6 +146,31 @@
     renderWeeklySummary(getWeekRange(state.currentDate));
     renderMonthlyTheme(state.currentDate);
     renderResources();
+  }
+
+  async function initializeCloudSync() {
+    if (!window.FunCalendarCloud) {
+      return;
+    }
+
+    window.FunCalendarCloud.onStatusChange((message) => {
+      if (syncStatusText) {
+        syncStatusText.textContent = message;
+      }
+    });
+
+    await window.FunCalendarCloud.initialize();
+    const remoteState = await window.FunCalendarCloud.loadState();
+    if (remoteState) {
+      state.storage = {
+        completions: remoteState.completions || {},
+        dayOverrides: remoteState.dayOverrides || {},
+        seriesOverrides: remoteState.seriesOverrides || [],
+        weekNotes: remoteState.weekNotes || {}
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.storage));
+      render();
+    }
   }
 
   function buildDayCard(date, activeRange) {

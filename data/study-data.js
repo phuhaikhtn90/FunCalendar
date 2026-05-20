@@ -104,7 +104,7 @@ window.STUDY_DATA = {
       note:
         "Watch one 4-6 minute clip. Suggested steps: 1) listen without subtitles, 2) watch again with subtitles, 3) note 3 new words, 4) answer 3 questions: who, where, what happened, 5) retell it in 2-4 sentences.",
       weekday: 1,
-      link: "https://www.youtube.com/@PeppaPigOfficial"
+      link: "https://glasp.co/youtube/XALuDo7MDFY"
     },
     {
       id: "chinese-mon",
@@ -129,7 +129,7 @@ window.STUDY_DATA = {
       note:
         "Suggested topics: introduce yourself, favorite objects, animals, or today’s activities. Goal: speak in short sentences and handle 4-5 back-and-forth turns.",
       weekday: 2,
-      link: "https://gemini.google.com/"
+      link: ""
     },
     {
       id: "chess-tue",
@@ -153,7 +153,7 @@ window.STUDY_DATA = {
       title: "Cambridge practice",
       note: "Once a week. Choose one light section such as phonics, vocabulary, a speaking card, or a short 20-minute worksheet.",
       weekday: 3,
-      link: "https://www.cambridgeenglish.org/learning-english/parents-and-children/activities-for-children/"
+      link: ""
     },
     {
       id: "chinese-wed",
@@ -217,7 +217,7 @@ window.STUDY_DATA = {
       title: "Speak English with Gemini",
       note: "Practice role-play conversations. Gemini can act as a teddy bear, teacher, or friend.",
       weekday: 0,
-      link: "https://gemini.google.com/"
+      link: ""
     },
     {
       id: "chinese-fri",
