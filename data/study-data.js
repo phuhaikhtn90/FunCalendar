@@ -19,9 +19,9 @@ window.STUDY_DATA = {
       url: "https://www.youtube.com/@PeppaPigOfficial"
     },
     {
-      title: "Cambridge English Activities",
-      description: "Structured practice ideas that fit the weekly Cambridge session.",
-      url: "https://www.cambridgeenglish.org/learning-english/parents-and-children/activities-for-children/"
+      title: "Khan Academy Kids",
+      description: "Structured practice ideas that fit the weekly Khan Academy session.",
+      url: "https://learn.khanacademy.org/khan-academy-kids/"
     },
     {
       title: "Lichess Practice",
@@ -83,7 +83,7 @@ window.STUDY_DATA = {
     10: {
       title: "Creative storytelling",
       focus: "Combining speaking, reading, writing, and drawing in one flow.",
-      ideas: ["Make a 4-panel comic story", "Dub a character voice", "Retell one story using simple multilingual phrases"]
+      ideas: ["Make a 4-panel comic story", "Listen and summarize a short dialogue", "Retell one story using simple multilingual phrases"]
     },
     11: {
       title: "Logic and puzzles",
@@ -94,6 +94,90 @@ window.STUDY_DATA = {
       title: "Year-end celebration projects",
       focus: "Bringing skills together and feeling proud of progress.",
       ideas: ["Make a mini achievement board", "Choose 3 favorite books", "Record a short video about what was learned"]
+    }
+  },
+  specialDateOverrides: {
+    "2026-05-27": {
+      tasks: [
+        {
+          id: "special-2026-05-27-paper-folding",
+          subject: "reading",
+          title: "Paper folding craft",
+          note: "Make one simple origami model and explain the steps in 2-3 short sentences.",
+          link: ""
+        },
+        {
+          id: "special-2026-05-27-khan",
+          subject: "english",
+          title: "Khan Academy practice",
+          note: "Complete one short Khan Academy lesson with simple guided practice.",
+          link: ""
+        },
+        {
+          id: "special-2026-05-27-gemini",
+          subject: "english",
+          title: "Speak English with Gemini",
+          note: "Talk about today’s craft, favorite colors, or what was learned in math. Aim for 4-5 turns.",
+          link: ""
+        },
+        {
+          id: "special-2026-05-27-math",
+          subject: "math",
+          title: "Math practice",
+          note: "Do one short set of addition, subtraction, or simple word problems.",
+          link: ""
+        }
+      ]
+    },
+    "2026-05-28": {
+      tasks: [
+        {
+          id: "special-2026-05-28-listen-summary",
+          subject: "english",
+          title: "Listening and dialogue summary",
+          note: "Listen to a short dialogue, answer who/where/what happened, then summarize it in 2-3 sentences.",
+          link: "https://www.youtube.com/@PeppaPigOfficial"
+        },
+        {
+          id: "special-2026-05-28-math",
+          subject: "math",
+          title: "Math practice",
+          note: "Work on one short math activity with counting, operations, or a simple puzzle.",
+          link: ""
+        },
+        {
+          id: "special-2026-05-28-reading",
+          subject: "reading",
+          title: "Reading time",
+          note: "Read a picture book or short story and share the favorite part.",
+          link: ""
+        }
+      ]
+    },
+    "2026-05-29": {
+      tasks: [
+        {
+          id: "special-2026-05-29-paper-folding",
+          subject: "reading",
+          title: "Paper folding craft",
+          note: "Make one easy origami model and name the shapes or steps used.",
+          link: ""
+        },
+        {
+          id: "special-2026-05-29-theme-video",
+          subject: "reading",
+          title: "Watch a theme-based video",
+          note: "Watch one short video related to the monthly topic and share 2 new facts.",
+          link: ""
+        },
+        {
+          id: "special-2026-05-29-khan",
+          subject: "english",
+          title: "Khan Academy practice",
+          note: "Complete one short Khan Academy lesson and review the key idea together.",
+          link: ""
+        }
+      ]
     }
   },
   recurringTemplates: [
@@ -150,8 +234,8 @@ window.STUDY_DATA = {
     {
       id: "cambridge-wed",
       subject: "english",
-      title: "Cambridge practice",
-      note: "Once a week. Choose one light section such as phonics, vocabulary, a speaking card, or a short 20-minute worksheet.",
+      title: "Khan Academy practice",
+      note: "Once a week. Complete one short Khan Academy lesson with guided questions and a quick recap.",
       weekday: 3,
       link: ""
     },
@@ -182,8 +266,8 @@ window.STUDY_DATA = {
     {
       id: "english-dub-thu",
       subject: "english",
-      title: "Character dubbing or shadowing",
-      note: "Choose 30-60 seconds of dialogue. Listen twice, copy the voice, and try acting as the character.",
+      title: "Listening and dialogue summary",
+      note: "Choose 30-60 seconds of dialogue. Listen twice, answer who/where/what happened, then summarize the conversation in 2-3 sentences.",
       weekday: 4,
       link: "https://www.youtube.com/@PeppaPigOfficial"
     },

@@ -330,6 +330,10 @@
 
   function getTasksForDate(date) {
     const dayKey = formatDateKey(date);
+    const specialOverride = STUDY_DATA.specialDateOverrides && STUDY_DATA.specialDateOverrides[dayKey];
+    if (specialOverride && Array.isArray(specialOverride.tasks)) {
+      return specialOverride.tasks;
+    }
     const baseTasks = STUDY_DATA.recurringTemplates
       .filter((task) => task.weekday === date.getDay())
       .map((task) => applySeriesOverrides(task, dayKey));
